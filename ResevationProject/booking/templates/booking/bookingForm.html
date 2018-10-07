@@ -1,0 +1,12 @@
+{% load i18n %}
+<h1>{% trans "Ajouter une nouvelle réservation" %}</h1>
+
+{% if envoi %}
+	{% trans "Votre message a bien été envoyé !" %}
+{% else %}
+	<form action="{% url "form" %}" method="post">
+	    {% csrf_token %}
+	    {{ form.as_p }}
+	    <input type="submit" value="Submit" />
+	</form>
+{% endif %}
