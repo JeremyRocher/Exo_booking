@@ -1,0 +1,17 @@
+{% extends "header.html" %}
+{% load i18n %}
+<h1>{% trans "Liste des Ressources" %}</h1>
+
+
+<h3>Bonjour {{ username }} !</h3>
+
+{% for resource in resources %}
+    <div class="resource">
+    	<h3>{{ resource.name }}</h3>
+    	<p>{{ resource.type}}</p>
+    	<p>{{ resource.location}}</p>
+    	<p>{{ resource.capacity}}</p>
+    </div>
+{% empty %}
+    <p>Aucune Ressource.</p>
+{% endfor %}
