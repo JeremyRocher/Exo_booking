@@ -15,7 +15,21 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from booking import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^home', views.home),
+    #url(r'^', views.home),
+    # Form
+    url(r'^userform', views.user_form),
+    url(r'^bookingform', views.booking_form, name="form"),
+    # Connexion 
+    #url(r'^login/$', auth_views.login, name='login'),
+    url(r'^connexion$', auth_views.login, {'template_name': 'booking/connexionForm.html'}),
+    #url(r'^connexion$', views.connexion, name='connexion'),
+    url(r'^logout/$', auth_views.logout, name='logout'),
+    #url(r'^deconnexion$', views.deconnexion, name='deconnexion'),
+#    url(r'^room/?P<id>\d+)', views.room),
 ]
