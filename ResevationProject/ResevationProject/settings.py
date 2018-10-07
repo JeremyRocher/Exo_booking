@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'ResevationProject.urls'
@@ -63,17 +64,11 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "django.template.context_processors.i18n",
             ],
         },
     },
 ]
-
-MIDDLEWARE_CLASSES = (
-   'django.middleware.locale.LocaleMiddleware',
-)
-TEMPLATE_CONTEXT_PROCESSORS = (
-   "django.template.context_processors.i18n",
-)
 
 WSGI_APPLICATION = 'ResevationProject.wsgi.application'
 
@@ -134,6 +129,10 @@ gettext = lambda x: x
 LANGUAGES = (
    ('fr', gettext('French')),
    ('en', gettext('English')),
+)
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, './i18n/'),
 )
 
 # Static files (CSS, JavaScript, Images)
